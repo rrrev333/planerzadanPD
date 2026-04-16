@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planer Zadań</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="kontener">
+        <header>
+            <h1>Planer Zadań</h1>
+            <div id="data_dzis" style="font-style: italic;"></div>
+        </header>
+
+        <section class="filtry_sekcja">
+            <div class="grupa_przyciskow">
+                <button class="guzik_menu aktywny" id="fil_wszystkie" data-filter="all">Wszystkie</button>
+                <button class="guzik_menu" id="fil_aktywne" data-filter="active">W toku</button>
+                <button class="guzik_menu" id="fil_zrobione" data-filter="completed">Zrobione</button>
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="szukaj_input" placeholder="Szukaj..." style="padding: 5px;">
+                <button id="guzik_nowe" style="background-color: green; color: white; font-weight: bold;">+ Dodaj
+                    Zadanie</button>
+            </div>
+        </section>
+
+        <div class="filtry_sekcja" style="font-size: 13px;">
+            <span>Filtruj po priorytecie:</span>
+            <div class="grupa_przyciskow">
+                <button class="guzik_menu" data-priority="High">Wysoki (<span data-priority="High"
+                        class="licznik_prio">0</span>)</button>
+                <button class="guzik_menu" data-priority="Medium">Średni (<span data-priority="Medium"
+                        class="licznik_prio">0</span>)</button>
+                <button class="guzik_menu" data-priority="Low">Niski (<span data-priority="Low"
+                        class="licznik_prio">0</span>)</button>
+            </div>
+            <h2 id="napis_widoku" style="font-size: 16px; margin: 0;">Widok: Wszystkie</h2>
+        </div>
+
+        <div id="kontener_listy" class="lista"></div>
+
+        <div id="brak_zadan" class="ukryj" style="text-align: center; padding: 50px;">
+            <h3>Brak zadań do wyświetlenia.</h3>
+            <p>Dodaj nowe zadanie za pomocą zielonego przycisku u góry.</p>
+        </div>
+
+        <div class="statystyki">
+            <strong>Postęp zadań:</strong> <span id="label_stat">0 / 0</span>
+            <div class="pasek_tlo">
+                <div id="moj_postep" class="pasek_postepu"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_zadania" class="modal_tlo ukryj">
+        <div class="modal_okno">
+            <h3 id="modal_tytul" style="margin-top: 0;">Nowe Zadanie</h3>
+            <hr>
+            <form id="moj_form">
+                <input type="hidden" id="task_id">
+                <div>
+                    <label>Tytuł zadania:</label>
+                    <input type="text" id="inp_tytul" required>
+                </div>
+                <div>
+                    <label>Opis:</label>
+                    <textarea id="inp_opis" rows="3"></textarea>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <div style="flex: 1;">
+                        <label>Priorytet:</label>
+                        <select id="inp_prio">
+                            <option value="Low">Niski</option>
+                            <option value="Medium">Średni</option>
+                            <option value="High">Wysoki</option>
+                        </select>
+                    </div>
+                    <div style="flex: 1;">
+                        <label>Kategoria:</label>
+                        <input type="text" id="inp_kat">
+                    </div>
+                </div>
+                <hr>
+                <div style="text-align: right;">
+                    <button type="button" id="anuluj_guzik">Anuluj</button>
+                    <button type="submit" style="background-color: #4f46e5; color: white;">Zapisz Zadanie</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
