@@ -1,100 +1,681 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planer Zadań</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PixelForge — agencja kreatywna specjalizująca się w tworzeniu nowoczesnych stron internetowych, aplikacji webowych i rozwiązań e-commerce. Przekształcamy Twoją wizję w cyfrową rzeczywistość.">
+  <title>PixelForge — Tworzymy Wyjątkowe Strony Internetowe</title>
+
+  <!-- Favicons -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔷</text></svg>">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Lucide Icons (lightweight) -->
+  <script src="https://unpkg.com/lucide@latest" defer></script>
 </head>
 
 <body>
-    <div class="kontener">
-        <header>
-            <h1>Planer Zadań</h1>
-            <div id="data_dzis" style="font-style: italic;"></div>
-        </header>
 
-        <section class="filtry_sekcja">
-            <div class="grupa_przyciskow">
-                <button class="guzik_menu aktywny" id="fil_wszystkie" data-filter="all">Wszystkie</button>
-                <button class="guzik_menu" id="fil_aktywne" data-filter="active">W toku</button>
-                <button class="guzik_menu" id="fil_zrobione" data-filter="completed">Zrobione</button>
-            </div>
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="logo">
+        <div class="logo-icon">P</div>
+        PixelForge
+      </a>
 
-            <div style="display: flex; gap: 10px;">
-                <input type="text" id="szukaj_input" placeholder="Szukaj..." style="padding: 5px;">
-                <button id="guzik_nowe" style="background-color: green; color: white; font-weight: bold;">+ Dodaj
-                    Zadanie</button>
-            </div>
-        </section>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Usługi</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#about">O nas</a></li>
+        <li><a href="#process">Proces</a></li>
+        <li><a href="#testimonials">Opinie</a></li>
+        <li><a href="#contact" class="btn btn-primary nav-cta">Kontakt</a></li>
+      </ul>
 
-        <div class="filtry_sekcja" style="font-size: 13px;">
-            <span>Filtruj po priorytecie:</span>
-            <div class="grupa_przyciskow">
-                <button class="guzik_menu" data-priority="High">Wysoki (<span data-priority="High"
-                        class="licznik_prio">0</span>)</button>
-                <button class="guzik_menu" data-priority="Medium">Średni (<span data-priority="Medium"
-                        class="licznik_prio">0</span>)</button>
-                <button class="guzik_menu" data-priority="Low">Niski (<span data-priority="Low"
-                        class="licznik_prio">0</span>)</button>
-            </div>
-            <h2 id="napis_widoku" style="font-size: 16px; margin: 0;">Widok: Wszystkie</h2>
-        </div>
-
-        <div id="kontener_listy" class="lista"></div>
-
-        <div id="brak_zadan" class="ukryj" style="text-align: center; padding: 50px;">
-            <h3>Brak zadań do wyświetlenia.</h3>
-            <p>Dodaj nowe zadanie za pomocą zielonego przycisku u góry.</p>
-        </div>
-
-        <div class="statystyki">
-            <strong>Postęp zadań:</strong> <span id="label_stat">0 / 0</span>
-            <div class="pasek_tlo">
-                <div id="moj_postep" class="pasek_postepu"></div>
-            </div>
-        </div>
+      <button class="hamburger" id="hamburger" aria-label="Otwórz menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </nav>
 
-    <div id="modal_zadania" class="modal_tlo ukryj">
-        <div class="modal_okno">
-            <h3 id="modal_tytul" style="margin-top: 0;">Nowe Zadanie</h3>
-            <hr>
-            <form id="moj_form">
-                <input type="hidden" id="task_id">
-                <div>
-                    <label>Tytuł zadania:</label>
-                    <input type="text" id="inp_tytul" required>
-                </div>
-                <div>
-                    <label>Opis:</label>
-                    <textarea id="inp_opis" rows="3"></textarea>
-                </div>
-                <div style="display: flex; gap: 10px;">
-                    <div style="flex: 1;">
-                        <label>Priorytet:</label>
-                        <select id="inp_prio">
-                            <option value="Low">Niski</option>
-                            <option value="Medium">Średni</option>
-                            <option value="High">Wysoki</option>
-                        </select>
-                    </div>
-                    <div style="flex: 1;">
-                        <label>Kategoria:</label>
-                        <input type="text" id="inp_kat">
-                    </div>
-                </div>
-                <hr>
-                <div style="text-align: right;">
-                    <button type="button" id="anuluj_guzik">Anuluj</button>
-                    <button type="submit" style="background-color: #4f46e5; color: white;">Zapisz Zadanie</button>
-                </div>
-            </form>
-        </div>
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="assets/hero-bg.png" alt="" width="1920" height="1080" fetchpriority="high">
     </div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
 
-    <script src="app.js"></script>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Przyjmujemy nowe projekty
+        </div>
+
+        <h1 class="hero-title">
+          Tworzymy strony<br>
+          które <span class="gradient-text">zachwycają</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Łączymy kreatywny design z najnowszymi technologiami, aby dostarczać
+          rozwiązania cyfrowe, które wyróżniają Twoją markę i generują realne wyniki.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">
+            Rozpocznij projekt
+            <i data-lucide="arrow-right" style="width:18px;height:18px"></i>
+          </a>
+          <a href="#portfolio" class="btn btn-outline">
+            Zobacz portfolio
+            <i data-lucide="eye" style="width:18px;height:18px"></i>
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-number">150+</div>
+            <div class="stat-label">Ukończonych projektów</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Zadowolonych klientów</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">8+</div>
+            <div class="stat-label">Lat doświadczenia</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Wsparcie techniczne</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ========== -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services-header reveal">
+        <span class="section-label">Nasze usługi</span>
+        <h2 class="section-heading">Kompleksowe rozwiązania<br>dla Twojego biznesu</h2>
+        <p class="section-desc">
+          Od koncepcji po wdrożenie — oferujemy pełen zakres usług cyfrowych, które pomogą Twojej firmie zaistnieć w sieci.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon icon-design">
+            <i data-lucide="palette" style="width:28px;height:28px"></i>
+          </div>
+          <h3 class="service-title">UI/UX Design</h3>
+          <p class="service-desc">
+            Projektujemy intuicyjne interfejsy, które zapewniają najlepsze doświadczenie użytkownika. Każdy piksel ma znaczenie.
+          </p>
+          <a href="#contact" class="service-link">
+            Dowiedz się więcej <i data-lucide="arrow-right" style="width:16px;height:16px"></i>
+          </a>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon icon-dev">
+            <i data-lucide="code-2" style="width:28px;height:28px"></i>
+          </div>
+          <h3 class="service-title">Web Development</h3>
+          <p class="service-desc">
+            Budujemy szybkie, responsywne i skalowalne aplikacje webowe z wykorzystaniem najnowszych technologii.
+          </p>
+          <a href="#contact" class="service-link">
+            Dowiedz się więcej <i data-lucide="arrow-right" style="width:16px;height:16px"></i>
+          </a>
+        </div>
+
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon icon-seo">
+            <i data-lucide="search" style="width:28px;height:28px"></i>
+          </div>
+          <h3 class="service-title">SEO & Marketing</h3>
+          <p class="service-desc">
+            Optymalizujemy Twoją obecność online, aby Twoja strona była widoczna w wynikach wyszukiwania i przyciągała klientów.
+          </p>
+          <a href="#contact" class="service-link">
+            Dowiedz się więcej <i data-lucide="arrow-right" style="width:16px;height:16px"></i>
+          </a>
+        </div>
+
+        <div class="service-card reveal reveal-delay-4">
+          <div class="service-icon icon-brand">
+            <i data-lucide="sparkles" style="width:28px;height:28px"></i>
+          </div>
+          <h3 class="service-title">Branding & Identyfikacja</h3>
+          <p class="service-desc">
+            Tworzymy spójną tożsamość marki — od logo po kompleksowe systemy identyfikacji wizualnej.
+          </p>
+          <a href="#contact" class="service-link">
+            Dowiedz się więcej <i data-lucide="arrow-right" style="width:16px;height:16px"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PORTFOLIO ========== -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="portfolio-header reveal">
+        <div>
+          <span class="section-label">Portfolio</span>
+          <h2 class="section-heading">Nasze najnowsze<br>realizacje</h2>
+          <p class="section-desc">
+            Każdy projekt to unikalna historia. Sprawdź, jak pomagamy markom się wyróżnić.
+          </p>
+        </div>
+        <a href="#contact" class="btn btn-outline">
+          Wszystkie projekty
+          <i data-lucide="external-link" style="width:16px;height:16px"></i>
+        </a>
+      </div>
+
+      <div class="portfolio-grid">
+        <div class="portfolio-card reveal reveal-delay-1">
+          <img src="assets/project-webapp.png" alt="Dashboard analityczny — aplikacja webowa" width="600" height="450" loading="lazy">
+          <div class="portfolio-overlay">
+            <span class="portfolio-tag">Aplikacja webowa</span>
+            <h3 class="portfolio-title">Dashboard Analityczny</h3>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal reveal-delay-2">
+          <img src="assets/project-ecommerce.png" alt="Platforma e-commerce Aurélien Luxe" width="600" height="450" loading="lazy">
+          <div class="portfolio-overlay">
+            <span class="portfolio-tag">E-commerce</span>
+            <h3 class="portfolio-title">Sklep Aurélien Luxe</h3>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal reveal-delay-3">
+          <img src="assets/project-branding.png" alt="Identyfikacja wizualna marki Aura" width="600" height="450" loading="lazy">
+          <div class="portfolio-overlay">
+            <span class="portfolio-tag">Branding</span>
+            <h3 class="portfolio-title">Aura — Identyfikacja Wizualna</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT / WHY US ========== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual reveal">
+          <div class="about-glass">
+            <div class="about-stat-card">
+              <div class="about-stat-number">150+</div>
+              <div class="about-stat-text">Zrealizowanych projektów</div>
+            </div>
+            <div class="about-stat-card">
+              <div class="about-stat-number">8+</div>
+              <div class="about-stat-text">Lat na rynku</div>
+            </div>
+            <div class="about-stat-card">
+              <div class="about-stat-number">25</div>
+              <div class="about-stat-text">Ekspertów w zespole</div>
+            </div>
+            <div class="about-stat-card">
+              <div class="about-stat-number">12</div>
+              <div class="about-stat-text">Branżowych nagród</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-text reveal">
+          <span class="section-label">Dlaczego my</span>
+          <h2 class="section-heading">Technologia spotyka<br>kreatywność</h2>
+          <p class="section-desc">
+            Jesteśmy zespołem pasjonatów, którzy łączą design z technologią.
+            Wierzymy, że każda marka zasługuje na wyjątkową obecność online.
+          </p>
+
+          <ul class="features-list">
+            <li class="feature-item">
+              <span class="feature-check"><i data-lucide="check" style="width:16px;height:16px"></i></span>
+              Indywidualne podejście do każdego projektu
+            </li>
+            <li class="feature-item">
+              <span class="feature-check"><i data-lucide="check" style="width:16px;height:16px"></i></span>
+              Najnowsze technologie i frameworki
+            </li>
+            <li class="feature-item">
+              <span class="feature-check"><i data-lucide="check" style="width:16px;height:16px"></i></span>
+              Pełne wsparcie po wdrożeniu
+            </li>
+            <li class="feature-item">
+              <span class="feature-check"><i data-lucide="check" style="width:16px;height:16px"></i></span>
+              Przejrzysta komunikacja i terminowość
+            </li>
+          </ul>
+
+          <a href="#contact" class="btn btn-primary">
+            Porozmawiajmy
+            <i data-lucide="message-circle" style="width:18px;height:18px"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROCESS ========== -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="process-header reveal">
+        <span class="section-label">Jak pracujemy</span>
+        <h2 class="section-heading">Nasz sprawdzony proces</h2>
+        <p class="section-desc">
+          Przejrzysty, czteroetapowy proces, który gwarantuje terminowe dostarczenie projektu na najwyższym poziomie.
+        </p>
+      </div>
+
+      <div class="process-timeline">
+        <div class="process-step reveal reveal-delay-1">
+          <div class="step-number">01</div>
+          <h3 class="step-title">Odkrywanie</h3>
+          <p class="step-desc">Poznajemy Twój biznes, cele i grupę docelową. Analizujemy konkurencję i rynek.</p>
+        </div>
+
+        <div class="process-step reveal reveal-delay-2">
+          <div class="step-number">02</div>
+          <h3 class="step-title">Projektowanie</h3>
+          <p class="step-desc">Tworzymy wireframe'y i makiety UI/UX. Iterujemy, aż design będzie idealny.</p>
+        </div>
+
+        <div class="process-step reveal reveal-delay-3">
+          <div class="step-number">03</div>
+          <h3 class="step-title">Budowanie</h3>
+          <p class="step-desc">Kodujemy z dbałością o każdy detal — responsywność, szybkość i bezpieczeństwo.</p>
+        </div>
+
+        <div class="process-step reveal reveal-delay-4">
+          <div class="step-number">04</div>
+          <h3 class="step-title">Wdrożenie</h3>
+          <p class="step-desc">Testujemy, optymalizujemy i uruchamiamy. Zapewniamy ciągłe wsparcie techniczne.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS ========== -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="testimonials-header reveal">
+        <span class="section-label">Opinie klientów</span>
+        <h2 class="section-heading">Co mówią o nas klienci</h2>
+        <p class="section-desc">
+          Zaufali nam dziesiątki firm — od startupów po korporacje. Oto, co o nas mówią.
+        </p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            „Współpraca z PixelForge to czysta przyjemność. Strona, którą dla nas stworzyli, 
+            zwiększyła konwersję o 240%. Profesjonalizm na najwyższym poziomie."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AK</div>
+            <div>
+              <div class="author-name">Anna Kowalska</div>
+              <div class="author-role">CEO, TechStart Polska</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            „Nasz nowy sklep internetowy wygląda fantastycznie i działa bez zarzutu. 
+            Zespół PixelForge rozumie potrzeby e-commerce jak nikt inny na rynku."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">MN</div>
+            <div>
+              <div class="author-name">Michał Nowak</div>
+              <div class="author-role">Właściciel, ModaPlus</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            „Od rebrandingu po nową stronę — PixelForge dostarczył wszystko na czas 
+            i powyżej oczekiwań. Gorąco polecam każdemu, kto szuka agencji godnej zaufania."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">KW</div>
+            <div>
+              <div class="author-name">Katarzyna Wiśniewska</div>
+              <div class="author-role">Marketing Manager, GreenLeaf</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-box reveal">
+        <span class="section-label">Gotowy na zmianę?</span>
+        <h2 class="section-heading">Zbudujmy razem coś<br><span class="gradient-text">wyjątkowego</span></h2>
+        <p class="section-desc">
+          Bez względu na to, czy potrzebujesz nowej strony, sklepu internetowego czy aplikacji — 
+          jesteśmy gotowi, aby pomóc Ci osiągnąć cele biznesowe.
+        </p>
+        <div class="cta-buttons">
+          <a href="#contact" class="btn btn-primary">
+            Bezpłatna wycena
+            <i data-lucide="arrow-right" style="width:18px;height:18px"></i>
+          </a>
+          <a href="tel:+48123456789" class="btn btn-outline">
+            <i data-lucide="phone" style="width:18px;height:18px"></i>
+            Zadzwoń do nas
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <span class="section-label">Kontakt</span>
+          <h3>Porozmawiajmy o Twoim projekcie</h3>
+          <p>
+            Wypełnij formularz, a nasz zespół skontaktuje się z Tobą w ciągu 24 godzin. 
+            Bez zobowiązań — pierwsza konsultacja jest bezpłatna.
+          </p>
+
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i data-lucide="mail" style="width:22px;height:22px"></i>
+              </div>
+              <div class="contact-item-text">
+                <div class="label">Email</div>
+                <div class="value">kontakt@pixelforge.pl</div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i data-lucide="phone" style="width:22px;height:22px"></i>
+              </div>
+              <div class="contact-item-text">
+                <div class="label">Telefon</div>
+                <div class="value">+48 123 456 789</div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i data-lucide="map-pin" style="width:22px;height:22px"></i>
+              </div>
+              <div class="contact-item-text">
+                <div class="label">Biuro</div>
+                <div class="value">ul. Kreatywna 42, Warszawa</div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i data-lucide="clock" style="width:22px;height:22px"></i>
+              </div>
+              <div class="contact-item-text">
+                <div class="label">Godziny pracy</div>
+                <div class="value">Pon–Pt: 9:00 – 17:00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" id="contactForm" action="#" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Imię i nazwisko</label>
+              <input type="text" id="name" name="name" placeholder="Jan Kowalski" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Adres email</label>
+              <input type="email" id="email" name="email" placeholder="jan@firma.pl" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Telefon</label>
+              <input type="tel" id="phone" name="phone" placeholder="+48 000 000 000">
+            </div>
+            <div class="form-group">
+              <label for="service">Usługa</label>
+              <select id="service" name="service" required>
+                <option value="" disabled selected>Wybierz usługę</option>
+                <option value="website">Strona internetowa</option>
+                <option value="ecommerce">Sklep internetowy</option>
+                <option value="webapp">Aplikacja webowa</option>
+                <option value="branding">Branding</option>
+                <option value="seo">SEO & Marketing</option>
+                <option value="other">Inne</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Wiadomość</label>
+            <textarea id="message" name="message" placeholder="Opisz swój projekt lub zadaj pytanie…" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary form-submit">
+            Wyślij wiadomość
+            <i data-lucide="send" style="width:18px;height:18px"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <div class="logo-icon">P</div>
+            PixelForge
+          </a>
+          <p>
+            Kreatywna agencja cyfrowa z Warszawy. Tworzymy nowoczesne strony internetowe, 
+            aplikacje i rozwiązania e-commerce od 2018 roku.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Usługi</h4>
+          <a href="#services">UI/UX Design</a>
+          <a href="#services">Web Development</a>
+          <a href="#services">SEO & Marketing</a>
+          <a href="#services">Branding</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Firma</h4>
+          <a href="#about">O nas</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#process">Proces</a>
+          <a href="#testimonials">Opinie</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Kontakt</h4>
+          <a href="mailto:kontakt@pixelforge.pl">kontakt@pixelforge.pl</a>
+          <a href="tel:+48123456789">+48 123 456 789</a>
+          <a href="#">ul. Kreatywna 42, Warszawa</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 PixelForge. Wszelkie prawa zastrzeżone.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook">
+            <i data-lucide="facebook" style="width:18px;height:18px"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Instagram">
+            <i data-lucide="instagram" style="width:18px;height:18px"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <i data-lucide="linkedin" style="width:18px;height:18px"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="GitHub">
+            <i data-lucide="github" style="width:18px;height:18px"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script>
+    /* — Initialize Lucide icons — */
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+
+    /* — Navbar scroll effect — */
+    const navbar = document.getElementById('navbar');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* — Mobile menu — */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    /* — Scroll reveal — */
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    /* — Counter animation — */
+    function animateCounters() {
+      document.querySelectorAll('.stat-number, .about-stat-number').forEach(counter => {
+        const text = counter.textContent;
+        const match = text.match(/(\d+)/);
+        if (!match) return;
+        
+        const target = parseInt(match[1]);
+        const suffix = text.replace(match[1], '');
+        let current = 0;
+        const increment = Math.ceil(target / 60);
+        const duration = 1500;
+        const stepTime = duration / (target / increment);
+
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          counter.textContent = current + suffix;
+        }, stepTime);
+      });
+    }
+
+    /* Trigger counters when hero stats are visible */
+    const statsSection = document.querySelector('.hero-stats');
+    if (statsSection) {
+      const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCounters();
+            statsObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      statsObserver.observe(statsSection);
+    }
+
+    /* — Contact form handling — */
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const btn = contactForm.querySelector('.form-submit');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span>✓ Wiadomość wysłana!</span>';
+      btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+      
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+        contactForm.reset();
+        lucide.createIcons();
+      }, 3000);
+    });
+
+    /* — Smooth parallax on mouse move (hero only) — */
+    const hero = document.getElementById('hero');
+    const orbs = document.querySelectorAll('.orb');
+
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+      orbs.forEach((orb, i) => {
+        const speed = (i + 1) * 15;
+        orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+      });
+    });
+  </script>
+
 </body>
-
 </html>
