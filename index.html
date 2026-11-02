@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Niezależne studio cyfrowe tworzące przemyślane strony internetowe i produkty cyfrowe dla ambitnych firm.">
+  <title>Strony-Moszczenica.pl</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <a class="marka" href="#poczatek"><span class="znak-marki">P</span> Strony-Moszczenica.pl</a>
+    <button class="przelacznik-menu" type="button" aria-expanded="false" aria-controls="nawigacja-glowna" aria-label="Otwórz nawigację">Menu</button>
+    <nav id="nawigacja-glowna" aria-label="Nawigacja główna">
+      <a href="#realizacje">Realizacje</a>
+      <a href="#uslugi">Usługi</a>
+      <a href="#pracownia">Pracownia</a>
+      <a class="kontakt-nav" href="#kontakt">Kontakt ↗</a>
+    </nav>
+  </header>
+
+  <main id="poczatek">
+    <section class="intro">
+      <p class="podpis-intro">Najlepsze Strony W Sieci · Dworcowa, Moszczenica</p>
+      <h1>Cyfrowe projekty<br><em>z charakterem.</em></h1>
+      <p class="opis-intro">Projektujemy i tworzymy przemyślane strony internetowe oraz produkty cyfrowe dla firm, które zmieniają swoje branże.</p>
+      <a class="przycisk" href="#realizacje">Zobacz nasze realizacje ↘</a>
+    </section>
+
+    <section class="projekt-wyrozniony" id="realizacje">
+      <h2>Wybrany projekt</h2>
+      <div class="zdjecie-projektu">
+        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="Nasłonecznione studio kreatywne ze wspólnym stołem do pracy">
+        <span>01 / Wybrane realizacje</span>
+      </div>
+      <div class="szczegoly-projektu">
+        <p class="etykieta-projektu">Strategia · Projekt · Programowanie</p>
+        <h3>Jaśniejszy kierunek na przyszłość.</h3>
+        <p>Razem z Bodzio Meble stworzyliśmy nowoczesną stronę internetową, która lepiej odzwierciedla ich wizję i potrzeby klientów.</p>
+      </div>
+    </section>
+
+    <section class="uslugi" id="uslugi">
+      <h2>Czym się zajmujemy</h2>
+      <article>
+        <span class="numer-uslugi">01</span>
+        <h3>Strategia cyfrowa</h3>
+        <p>Badania, pozycjonowanie marki i klarowny plan kolejnych działań.</p>
+      </article>
+      <article>
+        <span class="numer-uslugi">02</span>
+        <h3>Projektowanie stron</h3>
+        <p>Wyrazista identyfikacja i intuicyjne strony dopasowane do odbiorców.</p>
+      </article>
+      <article>
+        <span class="numer-uslugi">03</span>
+        <h3>Programowanie</h3>
+        <p>Szybkie i dostępne strony, które są proste w obsłudze i gotowe na rozwój.</p>
+      </article>
+    </section>
+
+    <section class="o-pracowni" id="pracownia">
+      <h2>Tworzymy z uważnością. <em>Projektujemy z celem.</em></h2>
+      <div class="opis-pracowni">
+        <p>Jesteśmy niezależnym zespołem projektantów i programistów. Wierzymy, że dobre projekty cyfrowe są przejrzyste, użyteczne i bliskie ludziom.</p>
+        <p>Od pierwszego szkicu po premierę pracujemy blisko z Twoim zespołem i dbamy o szczegóły, które naprawdę robią różnicę.</p>
+      </div>
+    </section>
+
+    <section class="kontakt" id="kontakt">
+      <h2>Stwórzmy coś, <em>co ma znaczenie.</em></h2>
+      <div class="opis-kontaktu">
+        <p>Porozmawiajmy o nowym projekcie, pomyśle albo po prostu wymieńmy się wiadomościami.</p>
+        <p><a href="mailto:hello@fieldwork.studio">hello@fieldwork.studio</a></p>
+      </div>
+      <form class="formularz-zapytania" id="formularz-zapytania">
+        <label for="imie">Twoje imię</label>
+        <input id="imie" name="imie" type="text" autocomplete="name" required>
+
+        <label for="adres-email">Adres e-mail</label>
+        <input id="adres-email" name="adres-email" type="email" autocomplete="email" required>
+
+        <label for="rodzaj-projektu">Czego potrzebujesz?</label>
+        <select id="rodzaj-projektu" name="rodzaj-projektu" required>
+          <option value="" selected disabled>Wybierz usługę</option>
+          <option>Strategia cyfrowa</option>
+          <option>Projektowanie stron</option>
+          <option>Programowanie strony</option>
+          <option>Coś innego</option>
+        </select>
+
+        <label for="wiadomosc">Opowiedz krótko o projekcie</label>
+        <textarea id="wiadomosc" name="wiadomosc" rows="4" required></textarea>
+
+        <button class="przycisk" type="submit">Przygotuj wiadomość ↗</button>
+        <p class="status-formularza" id="status-formularza" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="biezacy-rok"></span> Strony-Moszczenica.pl</p>
+    <p>Niezależni z wyboru · Działamy na całym świecie</p>
+    <a href="https://www.linkedin.com/" aria-label="Profil pracowni na LinkedIn">LinkedIn</a>
+    <a href="https://www.instagram.com/" aria-label="Profil pracowni na Instagramie">Instagram</a>
+  </footer>
+</body>
+</html>

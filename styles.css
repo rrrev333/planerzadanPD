@@ -1,0 +1,586 @@
+:root {
+  --papier: #f2efe6;
+  --tusz: #20231e;
+  --las: #191d18;
+  --limonka: #c8f36a;
+  --koral: #ff7654;
+  --przygaszony: #6e746b;
+  --kroj-naglowkow: "Space Grotesk", sans-serif;
+  --kroj-tekstu: "DM Sans", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--tusz);
+  background: var(--papier);
+  font-family: var(--kroj-tekstu);
+  line-height: 1.65;
+}
+
+a {
+  color: inherit;
+}
+
+header,
+main,
+footer {
+  width: min(1160px, calc(100% - 64px));
+  margin: 0 auto;
+}
+
+header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 88px;
+  border-bottom: 1px solid #d4d0c4;
+}
+
+.marka {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--kroj-naglowkow);
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.znak-marki {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--koral);
+  color: var(--tusz);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+nav a {
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+nav a:hover {
+  color: #aa452e;
+}
+
+.kontakt-nav {
+  padding: 10px 15px;
+  border: 1px solid var(--tusz);
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.kontakt-nav:hover {
+  background: var(--tusz);
+  color: var(--papier);
+}
+
+.przelacznik-menu {
+  display: none;
+}
+
+.intro {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-top: 28px;
+  padding: clamp(54px, 8vw, 100px) clamp(28px, 7vw, 82px);
+  border-radius: 4px;
+  background: linear-gradient(125deg, #17231d, #202f27 70%, #25352a);
+  color: var(--papier);
+}
+
+.intro::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 5px;
+  background: var(--limonka);
+  content: "";
+}
+
+.intro::after {
+  position: absolute;
+  right: 3%;
+  bottom: -23%;
+  z-index: -1;
+  color: #ffffff08;
+  content: "P";
+  font-family: var(--kroj-naglowkow);
+  font-size: clamp(240px, 42vw, 520px);
+  font-weight: 700;
+  line-height: 0.8;
+  pointer-events: none;
+}
+
+.podpis-intro,
+.etykieta-projektu {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.podpis-intro {
+  color: var(--koral);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--kroj-naglowkow);
+  line-height: 1.08;
+}
+
+h1 {
+  max-width: 850px;
+  margin: 24px 0;
+  font-size: clamp(64px, 10vw, 126px);
+  font-weight: 600;
+}
+
+h1 em {
+  color: var(--limonka);
+  font-weight: 400;
+}
+
+.opis-intro {
+  max-width: 510px;
+  margin-bottom: 26px;
+  color: #d3d9d0;
+  font-size: 16px;
+}
+
+.przycisk {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 10px;
+  padding: 14px 18px;
+  border: 0;
+  background: var(--limonka);
+  color: var(--tusz);
+  font-family: var(--kroj-tekstu);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.przycisk:hover {
+  transform: translateY(-3px);
+  background: var(--koral);
+}
+
+.przycisk:focus-visible,
+nav a:focus-visible,
+footer a:focus-visible,
+.przelacznik-menu:focus-visible {
+  outline: 3px solid var(--koral);
+  outline-offset: 4px;
+}
+
+.projekt-wyrozniony {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin-top: 24px;
+  overflow: hidden;
+  background: var(--limonka);
+}
+
+.projekt-wyrozniony h2 {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 22px 28px;
+  border-bottom: 1px solid #20231e30;
+  font-family: var(--kroj-tekstu);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.zdjecie-projektu {
+  position: relative;
+  height: 100%;
+  min-height: 390px;
+  overflow: hidden;
+}
+
+.zdjecie-projektu img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 500ms ease;
+}
+
+.zdjecie-projektu:hover img {
+  transform: scale(1.04);
+}
+
+.zdjecie-projektu span {
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  padding: 8px 11px;
+  background: var(--papier);
+  color: var(--tusz);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.szczegoly-projektu {
+  padding: clamp(28px, 5vw, 62px);
+  background: var(--limonka);
+}
+
+.etykieta-projektu {
+  display: inline-block;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #aa452e60;
+  color: #aa452e;
+}
+
+.projekt-wyrozniony h3 {
+  margin: 20px 0;
+  font-size: clamp(32px, 4vw, 52px);
+}
+
+.szczegoly-projektu p:last-child {
+  max-width: 390px;
+  color: #384135;
+}
+
+.uslugi {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding: 92px 0;
+}
+
+.uslugi h2 {
+  grid-column: 1 / -1;
+  margin: 0 0 20px;
+  font-size: clamp(38px, 5vw, 58px);
+}
+
+.uslugi article {
+  position: relative;
+  min-height: 190px;
+  padding: 25px 25px 28px;
+  border-top: 3px solid var(--koral);
+  background: #fffdf7;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.uslugi article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px #20231e12;
+}
+
+.uslugi article h3 {
+  margin: 18px 0 12px;
+  font-size: 22px;
+}
+
+.numer-uslugi {
+  color: #aa452e;
+  font-family: var(--kroj-naglowkow);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.uslugi article p {
+  margin: 0;
+  color: var(--przygaszony);
+  font-size: 14px;
+}
+
+.o-pracowni {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  gap: 50px;
+  align-items: center;
+  padding: clamp(32px, 6vw, 72px);
+  background: var(--koral);
+  color: var(--tusz);
+}
+
+.o-pracowni h2 {
+  margin: 0;
+  font-size: clamp(42px, 6vw, 70px);
+}
+
+.o-pracowni em {
+  color: #fff3dc;
+  font-weight: 400;
+}
+
+.opis-pracowni p {
+  color: #382e29;
+}
+
+.kontakt {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 56px;
+  margin-bottom: 30px;
+  padding: clamp(38px, 7vw, 82px);
+  background: var(--las);
+  color: var(--papier);
+}
+
+.kontakt h2 {
+  grid-column: 1 / -1;
+  max-width: 850px;
+  margin: 0 0 20px;
+  font-size: clamp(48px, 8vw, 92px);
+}
+
+.kontakt em {
+  color: var(--limonka);
+  font-weight: 400;
+}
+
+.opis-kontaktu p {
+  max-width: 500px;
+  color: #d3d9d0;
+}
+
+.opis-kontaktu a {
+  color: var(--limonka);
+  font-weight: 700;
+}
+
+.formularz-zapytania {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  align-content: start;
+  padding: 24px;
+  border: 1px solid #ffffff24;
+  background: #ffffff0a;
+}
+
+.formularz-zapytania label {
+  margin-top: 6px;
+  color: #d3d9d0;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.formularz-zapytania input,
+.formularz-zapytania select,
+.formularz-zapytania textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ffffff35;
+  border-radius: 0;
+  background: #ffffff0a;
+  color: var(--papier);
+  font: inherit;
+}
+
+.formularz-zapytania select option {
+  color: var(--tusz);
+}
+
+.formularz-zapytania textarea {
+  resize: vertical;
+}
+
+.formularz-zapytania input:focus,
+.formularz-zapytania select:focus,
+.formularz-zapytania textarea:focus {
+  outline: 2px solid var(--limonka);
+  outline-offset: 2px;
+}
+
+.formularz-zapytania .przycisk {
+  justify-self: start;
+  cursor: pointer;
+}
+
+.status-formularza {
+  min-height: 1.5em;
+  margin: 0;
+  color: var(--limonka);
+  font-size: 13px;
+}
+
+.kontakt .przycisk {
+  background: var(--koral);
+}
+
+.kontakt .przycisk:hover {
+  background: var(--limonka);
+}
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 20px;
+  padding: 22px 0 34px;
+  border-top: 1px solid #d4d0c4;
+  color: var(--przygaszony);
+  font-size: 12px;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer a {
+  color: var(--tusz);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #aa452e;
+}
+
+@media (max-width: 760px) {
+  header,
+  main,
+  footer {
+    width: calc(100% - 36px);
+  }
+
+  header {
+    min-height: 72px;
+  }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 5;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0;
+    padding: 12px 18px;
+    border: 1px solid #d4d0c4;
+    background: var(--papier);
+    box-shadow: 0 12px 24px #20231e16;
+  }
+
+  nav.otwarte {
+    display: flex;
+  }
+
+  nav a {
+    padding: 12px 4px;
+  }
+
+  .przelacznik-menu {
+    display: inline-block;
+    padding: 10px 14px;
+    border: 1px solid var(--tusz);
+    background: transparent;
+    color: var(--tusz);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .przelacznik-menu:hover {
+    background: var(--tusz);
+    color: var(--papier);
+  }
+
+  .intro {
+    margin-top: 18px;
+    padding: 48px 25px;
+  }
+
+  h1 {
+    font-size: clamp(58px, 14vw, 86px);
+  }
+
+  .projekt-wyrozniony {
+    grid-template-columns: 1fr;
+  }
+
+  .projekt-wyrozniony h2 {
+    grid-column: 1;
+  }
+
+  .zdjecie-projektu {
+    min-height: 280px;
+  }
+
+  .szczegoly-projektu {
+    padding: 30px 25px 38px;
+  }
+
+  .uslugi {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 64px 0;
+  }
+
+  .uslugi h2 {
+    grid-column: 1;
+  }
+
+  .uslugi article {
+    min-height: auto;
+  }
+
+  .o-pracowni {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 34px 25px;
+  }
+
+  .kontakt {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 42px 25px;
+  }
+
+  .kontakt h2 {
+    grid-column: 1;
+  }
+
+  .formularz-zapytania {
+    padding: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
